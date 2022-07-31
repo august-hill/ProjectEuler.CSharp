@@ -10,7 +10,7 @@
 
 namespace Problem1;
 
-internal class Program
+internal static class Program
 {
     private static void Main()
     {
@@ -24,6 +24,6 @@ internal class Program
                 sum += i;
         timeTaken.Stop();
 
-        Console.WriteLine($"The sum is {sum}, in {timeTaken.ElapsedMilliseconds} ms.");
+        Console.WriteLine($"The sum is {sum}, in {timeTaken.ElapsedTicks} ticks.");
     }
 }
