@@ -1,64 +1,59 @@
 ﻿using System.Collections;
 using System.Diagnostics;
 
-namespace Problem41
+namespace Problem41;
+
+internal static class Program
 {
-    class Program
+    private static bool IsPandigital(int i)
     {
-        static bool IsPandigital(int i)
+        var flags = new BitArray(10)
         {
-            var flags = new BitArray(10)
-            {
-                [0] = true
-            };
+            [0] = true
+        };
 
-            int k = 1;
-            while (i != 0)
-            {
-                int digit = i % 10;
-                if (flags[digit])
-                {
-                    return false;
-                }
-                flags[digit] = true;
-                i = i / 10;
-                ++k;
-            }
-
-            for (int j = 1; j < k; ++j)
-            {
-                if (!flags[j])
-                {
-                    return false;
-                }
-            }
-
-            return true;
+        var k = 1;
+        while (i != 0)
+        {
+            var digit = i % 10;
+            if (flags[digit]) return false;
+            flags[digit] = true;
+            i = i / 10;
+            ++k;
         }
 
-        private static void Main()
+        for (var j = 1; j < k; ++j)
+            if (!flags[j])
+                return false;
+
+        return true;
+    }
+
+    private static void Main()
+    {
+        var timeTaken = Stopwatch.StartNew();
+        // Note: Nine numbers cannot be done (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45 = > always dividable by 3)
+        // Note: Eight numbers cannot be done (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 = 36 = > always dividable by 3)
+
+        const int pandigitalMax = 7654321;
+        var p = new Primes(pandigitalMax);
+        var primes = p.GetPrimeList();
+
+        var result = 0;
+        
+        // search the list in reverse order
+        for (var i = primes.Count - 1 ; i >= 0; i--)
         {
-            var timeTaken = Stopwatch.StartNew();
-            // Note: Nine numbers cannot be done (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45 = > always dividable by 3)
-            // Note: Eight numbers cannot be done (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 = 36 = > always dividable by 3)
-
-            const int pandigitalMax = 7654321;
-            var p = new Primes(pandigitalMax);
-            var primes = p.GetPrimeList();
-
-            int result = 0;
-            foreach(var prime in primes)
+            if (IsPandigital(primes[i]))
             {
-                if (IsPandigital(prime) && prime > result)
-                {
-                    result = prime;
-                }
-
+                result = primes[i];
+                break;
             }
-
-
-            timeTaken.Stop();
-            Console.WriteLine($"largest pandigital is {result} in {timeTaken.ElapsedMilliseconds} ms.");
         }
+
+        timeTaken.Stop();
+        Console.WriteLine($"largest pandigital is {result} in {timeTaken.ElapsedMilliseconds} ms.");
+        
+        Debug.Assert(result == 7652413, "The correct answer is: 7652413.");
     }
 }
