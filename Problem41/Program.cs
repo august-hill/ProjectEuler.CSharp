@@ -9,7 +9,9 @@ internal static class Program
     {
         var flags = new BitArray(10)
         {
-            [0] = true
+            [0] = true,
+            [8] = true,
+            [9] = true
         };
 
         var k = 1;
