@@ -31,12 +31,16 @@ internal static class Program
         // 40 length  = 20 + 20
         // 40 c 20
 
+        var stopwatch = new Stopwatch();
+        
         for (BigInteger cubeSize = 2; cubeSize <= 20; cubeSize++)
         {
             var pathLength = cubeSize + cubeSize;
             var routes = Combination(pathLength, cubeSize);
             Console.WriteLine("cube = {0}x{0}, routes = {1}", cubeSize, routes);
-            Debug.Assert((cubeSize < 20)||(cubeSize == 20 && routes == 137846528820));
+            Debug.Assert(cubeSize < 20 || (cubeSize == 20 && routes == 137846528820));
         }
+        
+        Console.WriteLine($"{stopwatch.ElapsedTicks} ticks.");
     }
 }
