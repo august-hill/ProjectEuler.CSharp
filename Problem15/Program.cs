@@ -31,8 +31,8 @@ internal static class Program
         // 40 length  = 20 + 20
         // 40 c 20
 
-        var stopwatch = new Stopwatch();
-        
+        var stopwatch = Stopwatch.StartNew();
+
         for (BigInteger cubeSize = 2; cubeSize <= 20; cubeSize++)
         {
             var pathLength = cubeSize + cubeSize;

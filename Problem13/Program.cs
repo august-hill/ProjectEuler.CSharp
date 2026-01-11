@@ -7,7 +7,7 @@ internal static class Program
 {
     private static void Main()
     {
-        var stopwatch = new Stopwatch();
+        var stopwatch = Stopwatch.StartNew();
         string[] number =
         {
             "37107287533902102798797998220837590246510135740250",

@@ -7,7 +7,7 @@ internal static class Program
 {
     private static long Solution1(int limit)
     {
-        var stopwatch = new Stopwatch();
+        var stopwatch = Stopwatch.StartNew();
 
         // assume everything is prime (true)
         // assume our numbers start counting at 0 (so we add one to the limit)
@@ -38,7 +38,7 @@ internal static class Program
 
     private static long Solution2(int limit)
     {
-        var stopwatch = new Stopwatch();
+        var stopwatch = Stopwatch.StartNew();
 
         // Sieve implemented without storing even numbers...
         // Now prime p, is represented as p = 2 * i + 1, where i is sieve[i].

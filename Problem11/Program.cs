@@ -28,7 +28,7 @@ internal static class Program
 
     private static void Main()
     {
-        var stopWatch = new Stopwatch();
+        var stopWatch = Stopwatch.StartNew();
         int columns = G.GetLength(0);
         int rows = G.GetLength(1);
          
