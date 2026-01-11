@@ -1,41 +1,58 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 
 namespace Problem12;
 
 internal static class Program
 {
-    private static long T(long i)
-    {
-        return i * (i + 1) / 2;
-    }
-
-    private static long Dn(long n)
+    private static long CountDivisors(long n)
     {
         long count = 0;
-
-        var sqrtN = Convert.ToInt64(Math.Floor(Math.Sqrt(n)));
-
-        if (sqrtN * sqrtN == n) count = -1;
+        var sqrtN = (long)Math.Sqrt(n);
 
         for (long i = 1; i <= sqrtN; i++)
+        {
             if (n % i == 0)
-                count += 2;
+            {
+                if (i * i == n)
+                    count++;
+                else
+                    count += 2;
+            }
+        }
         return count;
+    }
+
+    private static long Solve()
+    {
+        long n = 1;
+        while (true)
+        {
+            long triangle = n * (n + 1) / 2;
+            if (CountDivisors(triangle) > 500)
+                return triangle;
+            n++;
+        }
     }
 
     private static void Main()
     {
-        var stopwatch = new Stopwatch();
-        for (long i = 1; i <= 2290001; i++)
-        {
-            var t = T(i);
-            var d = Dn(t);
+        const int iterations = 10;
 
-            if (d <= 500) continue;
-            stopwatch.Stop();
-            Console.WriteLine("Triangle Number ({0}) is {1}, divisors: {2} in {3} ticks", i, t, d, stopwatch.ElapsedTicks);
-            Debug.Assert(t == 76576500);
-            return;
-        }
+        Console.WriteLine("Problem 12: Highly Divisible Triangular Number");
+        Console.WriteLine("===============================================");
+        Console.WriteLine($"Iterations: {iterations}\n");
+
+        // Warmup
+        for (int i = 0; i < 10; i++)
+            Solve();
+
+        var stopwatch = Stopwatch.StartNew();
+        long result = 0;
+        for (int i = 0; i < iterations; i++)
+            result = Solve();
+        stopwatch.Stop();
+
+        double msPerOp = stopwatch.Elapsed.TotalMilliseconds / iterations;
+        Console.WriteLine($"Result: {result} ({msPerOp:F2} ms/op)");
     }
 }
