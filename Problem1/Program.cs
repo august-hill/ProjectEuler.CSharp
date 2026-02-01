@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 
 //  Multiples of 3 and 5
@@ -15,16 +15,36 @@ internal static class Program
 {
     private static void Main()
     {
-        var timeTaken = new Stopwatch();
         const int upperLimit = 1000;
-        var sum = 0;
+        var timeTaken = new Stopwatch();
 
+        // Approach 1: Brute-force loop O(n)
         timeTaken.Start();
+        var sumBruteForce = 0;
         for (var i = 1; i < upperLimit; i++)
             if (i % 3 == 0 || i % 5 == 0)
-                sum += i;
+                sumBruteForce += i;
         timeTaken.Stop();
+        Console.WriteLine($"Brute-force: {sumBruteForce} in {timeTaken.ElapsedTicks} ticks");
 
-        Console.WriteLine($"The sum is {sum}, in {timeTaken.ElapsedTicks} ticks.");
+        // Approach 2: Closed-form formula O(1)
+        timeTaken.Restart();
+        var sumFormula = CalculateSumFormula(upperLimit);
+        timeTaken.Stop();
+        Console.WriteLine($"Formula:     {sumFormula} in {timeTaken.ElapsedTicks} ticks");
+    }
+
+    /// <summary>
+    /// O(1) solution using inclusion-exclusion principle.
+    /// Sum of multiples of k below n = k * (n/k) * (n/k + 1) / 2
+    /// </summary>
+    private static long CalculateSumFormula(long upperLimit)
+    {
+        upperLimit--; // exclude the upper limit itself
+        long sumOfThrees = 3 * (upperLimit / 3 * (upperLimit / 3 + 1)) / 2;
+        long sumOfFives = 5 * (upperLimit / 5 * (upperLimit / 5 + 1)) / 2;
+        long sumOfFifteens = 15 * (upperLimit / 15 * (upperLimit / 15 + 1)) / 2;
+
+        return sumOfThrees + sumOfFives - sumOfFifteens;
     }
 }
