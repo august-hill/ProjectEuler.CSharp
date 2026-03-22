@@ -1,6 +1,5 @@
 // Answer: 840
-using System.Collections.Generic;
-using System.Linq;
+using System;
 
 namespace Problem39;
 
@@ -8,20 +7,33 @@ internal static class Program
 {
     static long Solve()
     {
-        Dictionary<int, int> solutions = new Dictionary<int, int>();
-        for (int a = 1; a < 1000; a++)
-        for (int b = 1; b < 1000; b++)
-        for (int c = 1; c < 1000; c++)
+        int[] solutions = new int[1001];
+
+        for (int a = 1; a < 334; a++)
         {
-            if (a < b && b < c && (a * a) + (b * b) == (c * c))
+            for (int b = a; b < 500; b++)
             {
-                int p = a + b + c;
-                if (solutions.ContainsKey(p)) solutions[p]++;
-                else solutions.Add(p, 1);
+                int cSquared = a * a + b * b;
+                int c = (int)Math.Sqrt(cSquared);
+                if (c * c == cSquared)
+                {
+                    int p = a + b + c;
+                    if (p <= 1000) solutions[p]++;
+                }
             }
         }
 
-        return solutions.Where(s => s.Key <= 1000).OrderByDescending(s => s.Value).First().Key;
+        int maxSolutions = 0;
+        int result = 0;
+        for (int p = 1; p <= 1000; p++)
+        {
+            if (solutions[p] > maxSolutions)
+            {
+                maxSolutions = solutions[p];
+                result = p;
+            }
+        }
+        return result;
     }
 
     static void Main() => Bench.Run(39, Solve);

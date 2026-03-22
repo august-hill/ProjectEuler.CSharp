@@ -1,46 +1,34 @@
 // Answer: 906609
+using System;
 
 namespace Problem4;
 
 internal static class Program
 {
-    private static bool IsPalindromic(int n)
-    {
-        var s = $"{n}";
-        var start = 0;
-        var end = s.Length - 1;
-        while (s[start] == s[end])
-        {
-            start++;
-            end--;
-            if (start >= end)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     static long Solve()
     {
-        var bigPalindrome = 0;
-
-        for (int i = 999; i > 99; i--)
+        // Generate 6-digit palindromes in descending order
+        for (int a = 9; a >= 1; a--)
         {
-            for (int j = 999; j > 99; j--)
+            for (int b = 9; b >= 0; b--)
             {
-                int p = i * j;
-                if (IsPalindromic(p))
+                for (int c = 9; c >= 0; c--)
                 {
-                    if (p > bigPalindrome)
+                    int palindrome = 100001 * a + 10010 * b + 1100 * c;
+
+                    for (int i = 999; i >= 100; i--)
                     {
-                        bigPalindrome = p;
+                        if (i * i < palindrome) break;
+                        if (palindrome % i == 0)
+                        {
+                            int j = palindrome / i;
+                            if (j >= 100 && j <= 999) return palindrome;
+                        }
                     }
                 }
             }
         }
-
-        return bigPalindrome;
+        return 0;
     }
 
     static void Main() => Bench.Run(4, Solve);

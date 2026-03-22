@@ -4,25 +4,18 @@ namespace Problem73;
 
 internal static class Program
 {
-    private static int Gcd(int a, int b)
+    const int Limit = 12_000;
+
+    static long CountBetween(int a, int b, int c, int d)
     {
-        while (b != 0) { int t = b; b = a % b; a = t; }
-        return a;
+        int medNum = a + c;
+        int medDen = b + d;
+        if (medDen > Limit) return 0;
+        return 1 + CountBetween(a, b, medNum, medDen)
+                 + CountBetween(medNum, medDen, c, d);
     }
 
-    static long Solve()
-    {
-        int limit = 12_000;
-        long count = 0;
-        for (int d = 2; d <= limit; d++)
-        {
-            int nMin = d / 3 + 1;
-            int nMax = (d % 2 == 0) ? d / 2 - 1 : d / 2;
-            for (int n = nMin; n <= nMax; n++)
-                if (Gcd(n, d) == 1) count++;
-        }
-        return count;
-    }
+    static long Solve() => CountBetween(1, 3, 1, 2);
 
     static void Main() => Bench.Run(73, Solve);
 }

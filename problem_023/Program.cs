@@ -1,39 +1,59 @@
 // Answer: 4179871
-using System.Collections.Generic;
+using System;
 
 namespace Problem23;
 
 internal static class Program
 {
-    static long SumProperDivisors(long n)
-    {
-        long sum = 0;
-        for (long i = 1; i < n; i++)
-            if (n % i == 0) sum += i;
-        return sum;
-    }
-
-    static bool IsAbundant(long n) => SumProperDivisors(n) > n;
-
-    const int MAX_ABUNDANT = 28123;
+    private static int[] _sumDiv;
 
     static long Solve()
     {
-        SortedSet<int> NL = new SortedSet<int>();
-        List<int> ABL = new List<int>();
+        const int limit = 28124;
 
-        for (int i = 1; i <= MAX_ABUNDANT; i++)
+        if (_sumDiv == null)
         {
-            NL.Add(i);
-            if (IsAbundant(i)) ABL.Add(i);
+            // Sieve for sum of proper divisors
+            _sumDiv = new int[limit];
+            for (int i = 1; i < limit; i++)
+            {
+                for (int j = 2 * i; j < limit; j += i)
+                {
+                    _sumDiv[j] += i;
+                }
+            }
         }
 
-        for (int i = 0; i < ABL.Count; i++)
-            for (int j = 0; j < ABL.Count; j++)
-                NL.Remove(ABL[i] + ABL[j]);
+        // Find abundant numbers
+        bool[] isAbundant = new bool[limit];
+        int[] abundants = new int[limit];
+        int count = 0;
+        for (int i = 12; i < limit; i++)
+        {
+            if (_sumDiv[i] > i)
+            {
+                isAbundant[i] = true;
+                abundants[count++] = i;
+            }
+        }
+
+        // Mark numbers expressible as sum of two abundants
+        bool[] expressible = new bool[limit];
+        for (int i = 0; i < count; i++)
+        {
+            for (int j = i; j < count; j++)
+            {
+                int s = abundants[i] + abundants[j];
+                if (s >= limit) break;
+                expressible[s] = true;
+            }
+        }
 
         long sum = 0;
-        foreach (int item in NL) sum += item;
+        for (int i = 1; i < limit; i++)
+        {
+            if (!expressible[i]) sum += i;
+        }
         return sum;
     }
 
