@@ -23,9 +23,10 @@ internal static class Program
     static long Solve()
     {
         long largest = 0;
-        for (int p = 1; p <= 999999999; p++)
+        // Only need to check p up to 9999 (concatenating p*1, p*2, ... must give 9 digits)
+        for (int p = 1; p <= 9999; p++)
         {
-            for (int n = 1; n <= 10; n++)
+            for (int n = 2; n <= 9; n++)
             {
                 long cp = Pandigital(p, n);
                 if (cp > largest) largest = cp;

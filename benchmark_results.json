@@ -1,0 +1,384 @@
+{
+    "language": "csharp",
+    "platform": "arm64",
+    "compiler": ".NET 10.0.101",
+    "timestamp": "2026-03-21T22:22:14Z",
+    "problems": {
+        "001": {
+            "answer": 233168,
+            "time_ns": 41,
+            "iterations": 1000,
+            "peak_rss_bytes": 186712064,
+            "source_lines": 23,
+            "source_bytes": 599
+        },
+        "002": {
+            "answer": 4613732,
+            "time_ns": 333,
+            "iterations": 1000,
+            "peak_rss_bytes": 199573504,
+            "source_lines": 27,
+            "source_bytes": 624
+        },
+        "003": {
+            "answer": 6857,
+            "time_ns": 363208,
+            "iterations": 1000,
+            "peak_rss_bytes": 200048640,
+            "source_lines": 44,
+            "source_bytes": 986
+        },
+        "004": {
+            "answer": 906609,
+            "time_ns": 13983250,
+            "iterations": 100,
+            "peak_rss_bytes": 199131136,
+            "source_lines": 47,
+            "source_bytes": 927
+        },
+        "005": {
+            "answer": 232792560,
+            "time_ns": 4291,
+            "iterations": 1000,
+            "peak_rss_bytes": 191938560,
+            "source_lines": 67,
+            "source_bytes": 1735
+        },
+        "006": {
+            "answer": 25164150,
+            "time_ns": 0,
+            "iterations": 1000,
+            "peak_rss_bytes": 198656000,
+            "source_lines": 17,
+            "source_bytes": 391
+        },
+        "007": {
+            "answer": 104743,
+            "time_ns": 41814667,
+            "iterations": 100,
+            "peak_rss_bytes": 203325440,
+            "source_lines": 35,
+            "source_bytes": 698
+        },
+        "008": {
+            "answer": 23514624000,
+            "time_ns": 127250,
+            "iterations": 1000,
+            "peak_rss_bytes": 198410240,
+            "source_lines": 60,
+            "source_bytes": 2112
+        },
+        "009": {
+            "answer": 31875000,
+            "time_ns": 110583,
+            "iterations": 1000,
+            "peak_rss_bytes": 194035712,
+            "source_lines": 22,
+            "source_bytes": 446
+        },
+        "010": {
+            "answer": 142913828922,
+            "time_ns": 4824208,
+            "iterations": 100,
+            "peak_rss_bytes": 199655424,
+            "source_lines": 30,
+            "source_bytes": 773
+        },
+        "011": {
+            "answer": 70600674,
+            "time_ns": 12791,
+            "iterations": 1000,
+            "peak_rss_bytes": 195870720,
+            "source_lines": 93,
+            "source_bytes": 3801
+        },
+        "012": {
+            "answer": 76576500,
+            "time_ns": 38882250,
+            "iterations": 100,
+            "peak_rss_bytes": 205864960,
+            "source_lines": 38,
+            "source_bytes": 756
+        },
+        "013": {
+            "answer": 5537376230,
+            "time_ns": 57917,
+            "iterations": 1000,
+            "peak_rss_bytes": 197197824,
+            "source_lines": 124,
+            "source_bytes": 6706
+        },
+        "014": {
+            "answer": 837799,
+            "time_ns": 476538500,
+            "iterations": 10,
+            "peak_rss_bytes": 194068480,
+            "source_lines": 32,
+            "source_bytes": 599
+        },
+        "015": {
+            "answer": 137846528820,
+            "time_ns": 2500,
+            "iterations": 1000,
+            "peak_rss_bytes": 198574080,
+            "source_lines": 28,
+            "source_bytes": 632
+        },
+        "016": {
+            "answer": 1366,
+            "time_ns": 91333,
+            "iterations": 1000,
+            "peak_rss_bytes": 195706880,
+            "source_lines": 29,
+            "source_bytes": 494
+        },
+        "017": {
+            "answer": 21124,
+            "time_ns": 183542,
+            "iterations": 1000,
+            "peak_rss_bytes": 198000640,
+            "source_lines": 111,
+            "source_bytes": 3489
+        },
+        "018": {
+            "answer": 1074,
+            "time_ns": 1688667,
+            "iterations": 100,
+            "peak_rss_bytes": 203538432,
+            "source_lines": 98,
+            "source_bytes": 2649
+        },
+        "019": {
+            "answer": 171,
+            "time_ns": 22083,
+            "iterations": 1000,
+            "peak_rss_bytes": 200179712,
+            "source_lines": 26,
+            "source_bytes": 567
+        },
+        "020": {
+            "answer": 648,
+            "time_ns": 21417,
+            "iterations": 1000,
+            "peak_rss_bytes": 196919296,
+            "source_lines": 32,
+            "source_bytes": 587
+        },
+        "021": {
+            "answer": 31626,
+            "time_ns": 57986125,
+            "iterations": 100,
+            "peak_rss_bytes": 200114176,
+            "source_lines": 33,
+            "source_bytes": 680
+        },
+        "023": {
+            "answer": 4179871,
+            "time_ns": 1569344375,
+            "iterations": 3,
+            "peak_rss_bytes": 199770112,
+            "source_lines": 41,
+            "source_bytes": 921
+        },
+        "024": {
+            "answer": 2783915460,
+            "time_ns": 441059917,
+            "iterations": 10,
+            "peak_rss_bytes": 375406592,
+            "source_lines": 36,
+            "source_bytes": 897
+        },
+        "025": {
+            "answer": 4782,
+            "time_ns": 26343792,
+            "iterations": 100,
+            "peak_rss_bytes": 197607424,
+            "source_lines": 30,
+            "source_bytes": 685
+        },
+        "026": {
+            "answer": 983,
+            "time_ns": 456062875,
+            "iterations": 10,
+            "peak_rss_bytes": 193724416,
+            "source_lines": 40,
+            "source_bytes": 1072
+        },
+        "027": {
+            "answer": -59231,
+            "time_ns": 74130000,
+            "iterations": 100,
+            "peak_rss_bytes": 198819840,
+            "source_lines": 63,
+            "source_bytes": 1647
+        },
+        "028": {
+            "answer": 669171001,
+            "time_ns": 2365708,
+            "iterations": 100,
+            "peak_rss_bytes": 193544192,
+            "source_lines": 77,
+            "source_bytes": 2465
+        },
+        "029": {
+            "answer": 9183,
+            "time_ns": 18249875,
+            "iterations": 100,
+            "peak_rss_bytes": 193871872,
+            "source_lines": 26,
+            "source_bytes": 588
+        },
+        "030": {
+            "answer": 443839,
+            "time_ns": 20560708,
+            "iterations": 100,
+            "peak_rss_bytes": 199524352,
+            "source_lines": 30,
+            "source_bytes": 600
+        },
+        "031": {
+            "answer": 73682,
+            "time_ns": 4211236625,
+            "iterations": 1000,
+            "peak_rss_bytes": 211353600,
+            "source_lines": 30,
+            "source_bytes": 889
+        },
+        "032": {
+            "answer": 45228,
+            "time_ns": 1388878292,
+            "iterations": 3,
+            "peak_rss_bytes": 223608832,
+            "source_lines": 37,
+            "source_bytes": 978
+        },
+        "033": {
+            "answer": 100,
+            "time_ns": 18291,
+            "iterations": 1000,
+            "peak_rss_bytes": 211992576,
+            "source_lines": 45,
+            "source_bytes": 1134
+        },
+        "034": {
+            "answer": 40730,
+            "time_ns": 16158584,
+            "iterations": 100,
+            "peak_rss_bytes": 211189760,
+            "source_lines": 30,
+            "source_bytes": 674
+        },
+        "035": {
+            "answer": 55,
+            "time_ns": 45314791,
+            "iterations": 100,
+            "peak_rss_bytes": 205979648,
+            "source_lines": 57,
+            "source_bytes": 1655
+        },
+        "036": {
+            "answer": 872187,
+            "time_ns": 9934666,
+            "iterations": 100,
+            "peak_rss_bytes": 213565440,
+            "source_lines": 38,
+            "source_bytes": 795
+        },
+        "039": {
+            "answer": 840,
+            "time_ns": 497950042,
+            "iterations": 10,
+            "peak_rss_bytes": 224411648,
+            "source_lines": 28,
+            "source_bytes": 744
+        },
+        "040": {
+            "answer": 210,
+            "time_ns": 1884375,
+            "iterations": 100,
+            "peak_rss_bytes": 205717504,
+            "source_lines": 28,
+            "source_bytes": 790
+        },
+        "041": {
+            "answer": 7652413,
+            "time_ns": 22499083,
+            "iterations": 100,
+            "peak_rss_bytes": 207929344,
+            "source_lines": 47,
+            "source_bytes": 976
+        },
+        "044": {
+            "answer": 5482660,
+            "time_ns": 105306459,
+            "iterations": 10,
+            "peak_rss_bytes": 204472320,
+            "source_lines": 32,
+            "source_bytes": 777
+        },
+        "045": {
+            "answer": 1533776805,
+            "time_ns": 42500,
+            "iterations": 1000,
+            "peak_rss_bytes": 211632128,
+            "source_lines": 30,
+            "source_bytes": 691
+        },
+        "048": {
+            "answer": 9110846700,
+            "time_ns": 276125,
+            "iterations": 1000,
+            "peak_rss_bytes": 216334336,
+            "source_lines": 39,
+            "source_bytes": 869
+        },
+        "057": {
+            "answer": 153,
+            "time_ns": 3331500,
+            "iterations": 100,
+            "peak_rss_bytes": 214384640,
+            "source_lines": 29,
+            "source_bytes": 627
+        },
+        "058": {
+            "answer": 26241,
+            "time_ns": 30365125,
+            "iterations": 100,
+            "peak_rss_bytes": 205684736,
+            "source_lines": 40,
+            "source_bytes": 982
+        },
+        "063": {
+            "answer": 49,
+            "time_ns": 266916,
+            "iterations": 1000,
+            "peak_rss_bytes": 212533248,
+            "source_lines": 25,
+            "source_bytes": 565
+        },
+        "092": {
+            "answer": 8581146,
+            "time_ns": 486433833,
+            "iterations": 10,
+            "peak_rss_bytes": 216088576,
+            "source_lines": 34,
+            "source_bytes": 688
+        },
+        "097": {
+            "answer": 8739992577,
+            "time_ns": 1576274209,
+            "iterations": 3,
+            "peak_rss_bytes": 211533824,
+            "source_lines": 17,
+            "source_bytes": 371
+        },
+        "416": {
+            "answer": 0,
+            "time_ns": 0,
+            "iterations": 1000,
+            "peak_rss_bytes": 213303296,
+            "source_lines": 14,
+            "source_bytes": 236
+        }
+    }
+}
