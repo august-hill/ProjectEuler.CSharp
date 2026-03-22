@@ -6,30 +6,48 @@ namespace Problem32;
 
 internal static class Program
 {
-    private static bool IsPandigital(string s)
+    private static bool IsPandigital(int a, int b, int c)
     {
-        bool[] flags = new bool[10] { true, false, false, false, false, false, false, false, false, false };
-        foreach (char ch in s)
+        int[] digits = new int[10];
+        digits[0] = 1; // 0 not allowed
+        int count = 0;
+
+        foreach (int n in new[] { a, b, c })
         {
-            if (flags[(int)ch - '0']) return false;
-            flags[(int)ch - '0'] = true;
+            int v = n;
+            while (v > 0)
+            {
+                int d = v % 10;
+                if (d == 0 || digits[d] != 0) return false;
+                digits[d] = 1;
+                count++;
+                v /= 10;
+            }
         }
-        return true;
+        return count == 9;
     }
 
     static long Solve()
     {
-        SortedSet<int> products = new SortedSet<int>();
-        for (int i = 1; i < 9999; i++)
+        HashSet<int> products = new HashSet<int>();
+
+        // For a * b = c to be 1-9 pandigital:
+        // digits(a) + digits(b) + digits(c) = 9
+        // If a is 1 digit, b must be 4 digits (c will be 4 digits)
+        // If a is 2 digits, b must be 3 digits (c will be 4 digits)
+        for (int a = 1; a < 100; a++)
         {
-            for (int j = i + 1; j < 9999; j++)
+            int start = (a < 10) ? 1000 : 100;
+            int end = (a < 10) ? 9999 : 999;
+
+            for (int b = start; b <= end; b++)
             {
-                int k = i * j;
-                string product = i.ToString() + j.ToString() + k.ToString();
-                if (product.Length == 9 && IsPandigital(product))
-                    products.Add(k);
+                int c = a * b;
+                if (IsPandigital(a, b, c))
+                    products.Add(c);
             }
         }
+
         return products.Sum();
     }
 

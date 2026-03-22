@@ -1,4 +1,5 @@
 // Answer: 997651
+using System;
 
 namespace Problem50;
 

@@ -1,39 +1,45 @@
 // Answer: 983
-using System.Numerics;
-using System.Text.RegularExpressions;
+using System;
 
 namespace Problem26;
 
 internal static class Program
 {
+    private static int CycleLength(int d)
+    {
+        int[] seen = new int[d];
+        Array.Fill(seen, -1);
+
+        int remainder = 1;
+        int position = 0;
+
+        while (remainder != 0)
+        {
+            if (seen[remainder] >= 0)
+                return position - seen[remainder];
+            seen[remainder] = position;
+            remainder = (remainder * 10) % d;
+            position++;
+        }
+
+        return 0; // Terminating decimal
+    }
+
     static long Solve()
     {
-        BigInteger numerator = 1;
-        const int DIGITS = 5000;
-        for (int i = 0; i < DIGITS; i++) numerator *= 10;
-
-        string pattern = @"^((?<dig>\d+?)(\k<dig>)+\d+?)|((?<pfx>\d+?)(?<dig>\d+?)(\k<dig>)+\d+?)$";
-        Regex rgx = new Regex(pattern, RegexOptions.Compiled);
-
-        int maxLength = 0;
-        int maxD = 0;
+        int maxCycle = 0;
+        int result = 0;
 
         for (int d = 2; d < 1000; d++)
         {
-            BigInteger y = numerator / d;
-            string answer = y.ToString().TrimEnd('0');
-            MatchCollection matches = rgx.Matches(answer);
-            if (matches.Count > 0)
+            int cycle = CycleLength(d);
+            if (cycle > maxCycle)
             {
-                int length = matches[0].Groups["dig"].Value.Length;
-                if (length > maxLength)
-                {
-                    maxLength = length;
-                    maxD = d;
-                }
+                maxCycle = cycle;
+                result = d;
             }
         }
-        return maxD;
+        return result;
     }
 
     static void Main() => Bench.Run(26, Solve);

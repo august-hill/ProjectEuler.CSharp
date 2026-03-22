@@ -1,6 +1,5 @@
 // Answer: 4782
 using System.Numerics;
-using System.Text;
 
 namespace Problem25;
 
@@ -8,21 +7,20 @@ internal static class Program
 {
     static long Solve()
     {
-        StringBuilder number = new StringBuilder(1000);
-        BigInteger F_Nminus1 = 1;
-        BigInteger F_Nminus2 = 1;
-        BigInteger F_N = F_Nminus2 + F_Nminus1;
-        long term = 3;
+        // Use BigInteger.Log10 to check digit count instead of converting to string
+        BigInteger a = 1;
+        BigInteger b = 1;
+        long term = 2;
 
         while (true)
         {
-            F_Nminus1 = F_Nminus2;
-            F_Nminus2 = F_N;
-            F_N = F_Nminus2 + F_Nminus1;
+            BigInteger next = a + b;
+            a = b;
+            b = next;
             term++;
-            number.Clear();
-            number.Append(F_N.ToString());
-            if (number.Length == 1000) return term;
+            // A number has 1000 digits when log10 >= 999
+            if (BigInteger.Log10(b) >= 999)
+                return term;
         }
     }
 

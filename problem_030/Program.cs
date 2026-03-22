@@ -4,25 +4,28 @@ namespace Problem30;
 
 internal static class Program
 {
-    private static int F(int i)
+    private static readonly int[] Pow5 = { 0, 1, 32, 243, 1024, 3125, 7776, 16807, 32768, 59049 };
+
+    private static int FifthPowerSum(int n)
     {
         int sum = 0;
-        const int power = 5;
-        string digits = i.ToString();
-        foreach (char ch in digits)
+        while (n > 0)
         {
-            int x = 1;
-            for (int n = 0; n < power; n++) x *= (int)(ch - '0');
-            sum += x;
+            sum += Pow5[n % 10];
+            n /= 10;
         }
         return sum;
     }
 
     static long Solve()
     {
+        // Upper bound: 6 * 9^5 = 354294
         int sum = 0;
-        for (int i = 2; i < 1000000; i++)
-            if (i == F(i)) sum += i;
+        for (int n = 2; n <= 354294; n++)
+        {
+            if (n == FifthPowerSum(n))
+                sum += n;
+        }
         return sum;
     }
 

@@ -1,27 +1,30 @@
 // Answer: 40730
-using System.Numerics;
 
 namespace Problem34;
 
 internal static class Program
 {
-    private static BigInteger factorial(BigInteger n)
+    private static readonly int[] Factorials = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };
+
+    private static int DigitFactorialSum(int n)
     {
-        if (n == 0) return 1;
-        return n * factorial(n - 1);
+        int sum = 0;
+        while (n > 0)
+        {
+            sum += Factorials[n % 10];
+            n /= 10;
+        }
+        return sum;
     }
 
     static long Solve()
     {
-        const int LIMIT = 100000;
+        // Upper bound: 7 * 9! = 2540160
         long sum = 0;
-        for (BigInteger n = 3; n < LIMIT; n++)
+        for (int n = 3; n <= 2540160; n++)
         {
-            string digits = n.ToString();
-            BigInteger digitSum = 0;
-            foreach (char ch in digits)
-                digitSum += factorial(ch - '0');
-            if (n == digitSum) sum += (long)n;
+            if (n == DigitFactorialSum(n))
+                sum += n;
         }
         return sum;
     }

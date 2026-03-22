@@ -5,6 +5,13 @@ namespace Problem57;
 
 internal static class Program
 {
+    private static int DigitCount(BigInteger n)
+    {
+        if (n.IsZero) return 1;
+        // GetByteCount gives raw size; use log10 for digit count
+        return (int)BigInteger.Log10(n) + 1;
+    }
+
     static long Solve()
     {
         int count = 0;
@@ -19,7 +26,7 @@ internal static class Program
             n = newN;
             d = newD;
 
-            if (n.ToString().Length > d.ToString().Length)
+            if (DigitCount(n) > DigitCount(d))
                 count++;
         }
         return count;

@@ -1,5 +1,4 @@
 // Answer: 5537376230
-using System.Numerics;
 
 namespace Problem13;
 
@@ -109,15 +108,24 @@ internal static class Program
         "53503534226472524250874054075591789781264330331690"
     };
 
+    private static long ParseFirst15(string s)
+    {
+        long result = 0;
+        for (int i = 0; i < 15; i++)
+            result = result * 10 + (s[i] - '0');
+        return result;
+    }
+
     static long Solve()
     {
-        BigInteger result = 0;
-        for (var i = 0; i < Numbers.Length; i++)
-        {
-            if (BigInteger.TryParse(Numbers[i], out BigInteger n))
-                result += n;
-        }
-        return long.Parse(result.ToString().Substring(0, 10));
+        long sum = 0;
+        for (int i = 0; i < Numbers.Length; i++)
+            sum += ParseFirst15(Numbers[i]);
+
+        // Reduce to first 10 digits
+        while (sum >= 100000000000L)
+            sum /= 10;
+        return sum / 10;
     }
 
     static void Main() => Bench.Run(13, Solve);
