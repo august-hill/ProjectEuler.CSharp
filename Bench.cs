@@ -18,8 +18,15 @@ public static class Bench
 
     public static void Run(int problem, Func<long> solveFn)
     {
-        // Warmup: 3 runs
-        for (int i = 0; i < 3; i++)
+        // Cold start: first run, no warmup, no JIT
+        var coldSw = Stopwatch.StartNew();
+        Sink(solveFn());
+        coldSw.Stop();
+        long coldNs = coldSw.ElapsedTicks * 1_000_000_000L / Stopwatch.Frequency;
+        Console.WriteLine($"COLDSTART|time_ns={coldNs}");
+
+        // Warmup: 2 more runs
+        for (int i = 0; i < 2; i++)
             Sink(solveFn());
 
         // Calibrate: time one run
