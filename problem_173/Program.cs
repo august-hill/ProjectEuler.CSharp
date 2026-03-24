@@ -20,8 +20,8 @@ internal static class Program
             long actualMMin = mMin;
             if (mSqMin > 0)
             {
-                actualMMin = 1;
-                while (actualMMin * actualMMin < mSqMin) actualMMin++;
+                actualMMin = (long)Math.Sqrt((double)mSqMin);
+                if (actualMMin * actualMMin < mSqMin) actualMMin++;
             }
             if (actualMMin < mMin) actualMMin = mMin;
             if ((actualMMin % 2) != (n % 2)) actualMMin++;

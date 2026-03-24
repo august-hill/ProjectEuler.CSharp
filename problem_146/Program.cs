@@ -35,17 +35,18 @@ internal static class Program
         return true;
     }
 
-    static long ModPow(long b, long exp, long mod)
+    static long ModPow(long baseVal, long exp, long mod)
     {
-        long result = 1;
-        b %= mod;
+        ulong result = 1;
+        ulong b = (ulong)(baseVal % mod);
+        ulong m = (ulong)mod;
         while (exp > 0)
         {
-            if ((exp & 1) != 0) result = (long)((System.UInt128)(ulong)result * (ulong)b % (ulong)mod);
-            b = (long)((System.UInt128)(ulong)b * (ulong)b % (ulong)mod);
+            if ((exp & 1) != 0) result = (ulong)((UInt128)result * b % m);
+            b = (ulong)((UInt128)b * b % m);
             exp >>= 1;
         }
-        return result;
+        return (long)result;
     }
 
     static long Solve()

@@ -16,11 +16,22 @@ internal static class Program
         for (int i = 0; i < Limit; i++) _mu[i] = 1;
         _mu[0] = 0;
 
-        // Eratosthenes-style Mobius sieve
-        for (int p = 2; p < Limit; p++)
+        // Compute is-prime via Eratosthenes sieve, then compute Mobius function.
+        bool[] isComposite = new bool[Limit];
+        var primes = new System.Collections.Generic.List<int>();
+
+        for (int i = 2; i < Limit; i++)
         {
-            if (_mu[p] != 1) continue; // not prime (already sieved)
-            // p is prime
+            if (!isComposite[i])
+            {
+                primes.Add(i);
+                for (long j = (long)i + i; j < Limit; j += i)
+                    isComposite[j] = true;
+            }
+        }
+
+        foreach (int p in primes)
+        {
             for (long j = p; j < Limit; j += p)
                 _mu[j] = (sbyte)(-_mu[j]);
             long p2 = (long)p * p;

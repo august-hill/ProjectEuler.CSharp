@@ -85,7 +85,7 @@ for NUM in "${PROB_LIST[@]}"; do
     TIME_OUT=$(mktemp)
     PROG_OUT=$(mktemp)
 
-    (cd "$PROB_DIR" && /usr/bin/time -l "$BIN" >"$PROG_OUT" 2>"$TIME_OUT") || true
+    (cd "$PROB_DIR" && gtimeout 120 /usr/bin/time -l "$BIN" >"$PROG_OUT" 2>"$TIME_OUT") || true
 
     BENCH_LINE=$(grep '^BENCHMARK|' "$PROG_OUT" 2>/dev/null || echo "")
 
@@ -128,7 +128,15 @@ done
 
 RESULTS_JSON+="}}"
 
-echo "$RESULTS_JSON" | python3 -m json.tool > "$OUTPUT" 2>/dev/null || echo "$RESULTS_JSON" > "$OUTPUT"
+# Merge new results into existing file (preserves results from prior runs)
+NEW_JSON="$RESULTS_JSON"
+if [ -f "$OUTPUT" ]; then
+    MERGED=$(jq -s '
+        .[0] as $old | .[1] as $new |
+        $new * {problems: (($old.problems // {}) * $new.problems)}
+    ' "$OUTPUT" <(echo "$NEW_JSON") 2>/dev/null) && NEW_JSON="$MERGED"
+fi
+echo "$NEW_JSON" | python3 -m json.tool > "$OUTPUT" 2>/dev/null || echo "$NEW_JSON" > "$OUTPUT"
 
 echo ""
 echo "Results: $PASS passed, $FAIL failed"
